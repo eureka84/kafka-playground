@@ -51,11 +51,6 @@ class SampleControllerTest {
         fun configureMysql(registry: DynamicPropertyRegistry) {
             val dbPort = System.getProperty("db_1.tcp.3306")
             registry.add("spring.datasource.url") { "jdbc:mysql://localhost:$dbPort/db" }
-
-            val brokerPort = System.getProperty("broker.tcp.9092")
-            LOGGER.info("Dynamic kafka port: $brokerPort")
-            registry.add("spring.kafka.bootstrap-servers") { "localhost:$brokerPort" }
-            registry.add("spring.kafka.consumer.bootstrap-servers") { "localhost:$brokerPort" }
         }
 
     }
