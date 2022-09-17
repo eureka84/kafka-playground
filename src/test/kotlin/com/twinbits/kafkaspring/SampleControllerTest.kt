@@ -14,15 +14,12 @@ import org.springframework.http.RequestEntity
 import org.springframework.jdbc.core.JdbcTemplate
 import org.springframework.test.context.DynamicPropertyRegistry
 import org.springframework.test.context.DynamicPropertySource
-import org.springframework.test.context.jdbc.Sql
 import java.net.URI
 import java.time.Duration
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWebMvc
 class SampleControllerTest {
-
-    private val logger = LoggerFactory.getLogger(SampleControllerTest::class.java)
 
     @LocalServerPort
     var localServerPort: Int = 0
@@ -33,7 +30,6 @@ class SampleControllerTest {
     private val testRestTemplate: TestRestTemplate = TestRestTemplate()
 
     @Test
-    @Sql("/schema.sql")
     internal fun `send message`() {
         val requestEntity = RequestEntity<Void>(HttpMethod.PUT, URI.create("http://localhost:$localServerPort/send"))
 
@@ -48,7 +44,6 @@ class SampleControllerTest {
     }
 
     companion object {
-
         private val LOGGER = LoggerFactory.getLogger(SampleControllerTest::class.java)
 
         @JvmStatic
