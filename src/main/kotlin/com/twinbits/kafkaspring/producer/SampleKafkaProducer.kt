@@ -8,8 +8,11 @@ import org.springframework.stereotype.Component
 class SampleKafkaProducer(private val kafkaTemplate: KafkaTemplate<String, String>) {
 
     fun send(message: String) {
-
         kafkaTemplate.send(SAMPLE_TOPIC, "fake-key", message)
+            .addCallback(
+                { println("Success sending message $message") },
+                { println("Failure sending message $message") }
+            )
     }
 
 }
