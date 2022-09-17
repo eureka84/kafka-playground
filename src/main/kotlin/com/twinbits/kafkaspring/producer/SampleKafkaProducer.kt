@@ -4,12 +4,10 @@ import com.twinbits.kafkaspring.confs.Topics.SAMPLE_TOPIC
 import org.springframework.kafka.core.KafkaTemplate
 import org.springframework.stereotype.Component
 
-data class Message(val content: String)
-
 @Component
-class SampleKafkaProducer(private val kafkaTemplate: KafkaTemplate<String, Message>) {
+class SampleKafkaProducer(private val kafkaTemplate: KafkaTemplate<String, String>) {
 
-    fun send(message: Message) {
+    fun send(message: String) {
 
         kafkaTemplate.send(SAMPLE_TOPIC, "fake-key", message)
     }
