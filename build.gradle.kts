@@ -55,3 +55,4 @@ dockerCompose {
 }
 
 dockerCompose.isRequiredBy(project.tasks.test)
+dockerCompose.isRequiredBy(project.tasks.bootRun)
